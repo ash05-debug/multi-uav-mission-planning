@@ -71,7 +71,7 @@ st.markdown(
 
 with st.sidebar:
     st.header("Mission configuration")
-    model = st.text_input("LLM model", value="qwen2.5:3b")
+    model = st.text_input("LLM model", value="openai/gpt-oss-20b")
     st.caption("Local LLM endpoint: http://localhost:11434")
     particles = st.slider("PSO particles", 12, 60, 36, 4)
     iterations = st.slider("PSO iterations", 20, 120, 65, 5)
