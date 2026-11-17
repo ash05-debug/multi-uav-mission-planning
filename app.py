@@ -71,7 +71,7 @@ st.markdown(
 
 with st.sidebar:
     st.header("Mission configuration")
-    model = st.text_input("Ollama model", value="qwen2.5:3b")
+    model = st.text_input("LLM model", value="qwen2.5:3b")
     st.caption("Local LLM endpoint: http://localhost:11434")
     particles = st.slider("PSO particles", 12, 60, 36, 4)
     iterations = st.slider("PSO iterations", 20, 120, 65, 5)
@@ -81,7 +81,7 @@ with st.sidebar:
 scenario_text = st.text_area("Describe your disaster-response mission", value=DEFAULT_SCENARIO, height=160)
 c1,c2 = st.columns([1,1])
 with c1:
-    use_llm = st.checkbox("Use local LLM to interpret the mission", value=True)
+    use_llm = st.checkbox("Use hosted Groq LLM to interpret the mission", value=True)
 with c2:
     use_demo = st.checkbox("Use built-in validated demo if LLM is unavailable", value=True)
 
@@ -92,7 +92,7 @@ if st.button("Understand mission and optimize", type="primary", use_container_wi
         try:
             with st.spinner("LLM is converting your mission brief into structured UAV, task and obstacle data..."):
                 scenario = parse_with_ollama(scenario_text, model=model)
-            llm_status = "Mission interpreted successfully by the local LLM."
+            llm_status = "Mission interpreted successfully by the Groq LLM."
         except Exception as e:
             if use_demo:
                 scenario = DEMO_DATA
